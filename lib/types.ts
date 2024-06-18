@@ -1,4 +1,10 @@
 export type AboutProps = {
   title: string;
   description: string[];
+  imageUrl: string;
 };
+
+export type SocialNetworksProps = {
+  icon: string;
+  linkUrl: string;
+}
