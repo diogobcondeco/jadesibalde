@@ -1,4 +1,32 @@
-import { AboutProps, SocialNetworksProps } from "./types";
+import { AboutProps, DiferenciaisProps, SocialNetworksProps } from "./types";
+
+export const diferenciaisInfo: DiferenciaisProps[] = [
+    {
+      logo: "/images/logo1.png",
+      title: "Title 1",
+      description: "This is a small description for item 1. It should be about twenty words long."
+    },
+    {
+      logo: "/images/logo2.png",
+      title: "Title 2",
+      description: "This is a small description for item 2. It should be about twenty words long."
+    },
+    {
+      logo: "/images/logo3.png",
+      title: "Title 3",
+      description: "This is a small description for item 3. It should be about twenty words long."
+    },
+    {
+      logo: "/images/logo4.png",
+      title: "Title 4",
+      description: "This is a small description for item 4. It should be about twenty words long."
+    },
+    {
+      logo: "/images/logo5.png",
+      title: "Title 5",
+      description: "This is a small description for item 5. It should be about twenty words long."
+    },
+];
 
 export const aboutInfo: AboutProps = {
   title: "Sobre A Advogada",

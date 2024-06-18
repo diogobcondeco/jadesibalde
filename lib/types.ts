@@ -1,3 +1,9 @@
+export type DiferenciaisProps = {
+  logo: string;
+  title: string;
+  description: string;
+}
+
 export type AboutProps = {
   title: string;
   description: string[];
