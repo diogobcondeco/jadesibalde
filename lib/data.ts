@@ -70,7 +70,7 @@ export const aboutInfo: AboutProps = {
     "Acredito firmemente que a combinação de preparo científico e a aplicação prática é essencial para oferecer uma advocacia de excelência. Minha formação me permite abordar os casos com uma perspectiva aprofundada e técnica, enquanto minha experiência prática me ensina a adaptar essas teorias à realidade de cada cliente.",
     "Meu compromisso é com a excelência e a integridade, priorizando sempre que possível a via extrajudicial.  Se você procura uma advogada que compreenda a singularidade do seu caso e esteja comprometida com a defesa dos seus interesses com rigor e dedicação, estou aqui para ajudá-lo. Juntos, podemos transformar desafios legais em oportunidades de sucesso."
   ],
-  imageUrl: "/jade2.jpg",
+  imageUrl: "/jade_about.jpg",
   additionalText: "Bacharel em Direito pela Universidade Federal da Bahia, pós-graduada em Compliance e Integridade Corporativa pela Pontifícia Universidade Católica de Minas Gerais, Pós-Graduada em Direito Intelectual pela Associação Portuguesa de Direito Intelectual. Em 2022, iniciei o mestrado em Direito Intelectual pela Universidade de Lisboa e atualmente sou doutoranda em Ciências Jurídico-Políticas pela mesma instituição."
 } 
 
