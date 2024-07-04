@@ -5,7 +5,7 @@ const About = () => {
   const { title, description, imageUrl } = aboutInfo;
 
   return (
-    <div id="section_about">
+    <div id="section_about" className="py-4">
       <Wrapper>
         <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
         <div className="flex flex-wrap justify-between items-center">

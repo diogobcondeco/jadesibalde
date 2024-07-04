@@ -1,41 +1,74 @@
-import { AboutProps, DiferenciaisProps, SocialNetworksProps } from "./types";
+import { AboutProps, AtuacaoProps, DiferenciaisProps, SocialNetworksProps } from "./types";
+
+export const atuacaoInfo: AtuacaoProps[] = [
+  {
+    logo: "/images/direito_sucessorio.png",
+    title: "Direito Sucessório"
+  },
+  {
+    logo: "/images/contratos.png",
+    title: "Contratos"
+  },
+  {
+    logo: "/images/direito_eleitoral.png",
+    title: "Direito Eleitoral"
+  },
+  {
+    logo: "/images/direito_digital.png",
+    title: "Direito Digital"
+  },
+  {
+    logo: "/images/propriedade_intelectual.png",
+    title: "Propriedade Intelectual"
+  },
+  {
+    logo: "/images/direito_familia_internacional.png",
+    title: "Direito de Família Internacional"
+  },
+  {
+    logo: "/images/curatela.png",
+    title: "Curatela (Interdição)"
+  },
+  {
+    logo: "/images/compliance.png",
+    title: "Compliance e Governança"
+  },
+]
 
 export const diferenciaisInfo: DiferenciaisProps[] = [
     {
-      logo: "/images/logo1.png",
-      title: "Title 1",
-      description: "This is a small description for item 1. It should be about twenty words long."
+      logo: "/images/atuacao_brasil_exterior.png",
+      title: "Atuação em Todo o Brasil e Exterior",
+      description: "Ofereço serviços jurídicos em todo o território nacional, com atendimentos on-line para sua conveniência. Para clientes no exterior, disponibilizo atendimento especializado em questões de família e migração."
     },
     {
-      logo: "/images/logo2.png",
-      title: "Title 2",
-      description: "This is a small description for item 2. It should be about twenty words long."
+      logo: "/images/alta_especializacao.png",
+      title: "Alta Especialização",
+      description: "Formação diferenciada para oferecer as melhores soluções para seu caso."
     },
     {
-      logo: "/images/logo3.png",
-      title: "Title 3",
-      description: "This is a small description for item 3. It should be about twenty words long."
+      logo: "/images/abordagem_humanizada.png",
+      title: "Abordagem Humanizada",
+      description: "Cada pessoa é única, assim como seu processo! Minhas soluções jurídicas são personalizadas para atender às suas necessidades específicas."
     },
     {
-      logo: "/images/logo4.png",
-      title: "Title 4",
-      description: "This is a small description for item 4. It should be about twenty words long."
+      logo: "/images/atualizacoes_periodicas.png",
+      title: "Atualizações Periódicas",
+      description: "Saiba sobre seu caso! Mensalmente dou retorno aos meus clientes sobre seus casos através de um relatório simplificado de acompanhamento."
     },
     {
-      logo: "/images/logo5.png",
-      title: "Title 5",
-      description: "This is a small description for item 5. It should be about twenty words long."
+      logo: "/images/acesso_facil_comunicacao_clara.png",
+      title: "Acesso Fácil e Comunicação Clara",
+      description: "Acredito na importância de uma comunicação clara e acessível, estando sempre disponível para esclarecer dúvidas e te manter bem informado(a)."
     },
 ];
 
 export const aboutInfo: AboutProps = {
   title: "Sobre A Advogada",
   description: [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac suscipit urna, ac maximus arcu.",
-    "Maecenas sit amet sapien non nisl tempor malesuada dictum ut risus. Ut dignissim tortor in sapien maximus, eu pulvinar nibh cursus.",
-    "Vivamus non commodo erat. Donec ut pretium dui. In sagittis orci vitae nunc tempor, ac maximus urna euismod. Nullam sit amet convallis metus.",
-    "Praesent semper elit eget nunc dignissim, eget pulvinar elit ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.",
-    "Proin ac mi egestas, vulputate nulla eget, ultrices nunc. Curabitur mattis mauris nunc, at pretium sapien laoreet in. Morbi odio risus, iaculis vitae mattis venenatis, viverra in lorem. Nulla facilisi. Sed ante lacus, iaculis varius erat et, bibendum faucibus eros."
+    "Eu acredito que cada caso é único, carregando consigo uma história distinta e um contexto especial. Para mim, um caso é muito mais do que um número; é uma oportunidade de fazer a diferença na vida das pessoas.",
+    "Acredito firmemente que a combinação de preparo científico e a aplicação prática é essencial para oferecer uma advocacia de excelência. Minha formação me permite abordar os casos com uma perspectiva aprofundada e técnica, enquanto minha experiência prática me ensina a adaptar essas teorias à realidade de cada cliente.",
+    "Meu compromisso é com a excelência e a integridade, priorizando sempre que possível a via extrajudicial.  Se você procura uma advogada que compreenda a singularidade do seu caso e esteja comprometida com a defesa dos seus interesses com rigor e dedicação, estou aqui para ajudá-lo. Juntos, podemos transformar desafios legais em oportunidades de sucesso."
   ],
   imageUrl: "/images/about-image.jpg"
 } 

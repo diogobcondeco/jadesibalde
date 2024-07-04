@@ -1,3 +1,8 @@
+export type AtuacaoProps = {
+  logo: string;
+  title: string;
+}
+
 export type DiferenciaisProps = {
   logo: string;
   title: string;

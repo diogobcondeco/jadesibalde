@@ -1,24 +1,25 @@
+import { atuacaoInfo } from "@/lib/data";
 import Wrapper from "./Wrapper";
 
 const Atuacao = () => {
   return (
-    <div id="section_atuacao">
+    <div id="section_atuacao" className="py-4">
       <Wrapper>
         <div className="text-3xl font-bold mb-8 text-center">Atuação</div>
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/2 p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {Array.from({ length: 6 }).map((_, index) => (
+              {atuacaoInfo.map((item, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-center p-4 border rounded shadow"
                 >
                   <img
-                    src={`/images/logo${index + 1}.png`}
+                    src={item.logo}
                     alt={`Logo ${index + 1}`}
                     className="h-16 w-16 mb-2"
                   />
-                  <h3 className="text-lg font-bold">Title {index + 1}</h3>
+                  <h3 className="text-lg font-bold text-center">{item.title}</h3>
                 </div>
               ))}
             </div>
