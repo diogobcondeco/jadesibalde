@@ -12,7 +12,7 @@ const Footer = () => {
       </div>
       <div className="flex justify-between items-center">
         <div className="w-full md:w-1/2 text-left">
-          <span>Made by </span>
+          <span>Feito por </span>
           <a href={madeBy} target="_blank" rel="noopener noreferrer" className="underline">
             diogobcondeco.com
           </a>
