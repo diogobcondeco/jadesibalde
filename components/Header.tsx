@@ -49,7 +49,7 @@ const Header = () => {
       <nav
         className={`md:hidden ${
           isOpen ? "block" : "hidden"
-        } bg-gray-800 text-white flex flex-col items-center py-4`}
+        } text-white flex flex-col items-center py-8 gap-4 text-lg`}
       >
         <a href="#section_atuacao" className="hover:underline py-2">
           Atuação

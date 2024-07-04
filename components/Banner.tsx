@@ -1,7 +1,40 @@
+import Button from "./Button";
+import Wrapper from "./Wrapper";
+
 const Banner = () => {
   return (
-    <div className="w-full">
-      <img src="/banner.png" alt="Banner" className="w-full" />
+    <div
+      className="relative w-full bg-cover bg-center"
+      style={{ backgroundImage: "url(/banner.png)" }}
+    >
+      <Wrapper className="pb-0">
+        <div
+          className="flex flex-col md:flex-row items-center justify-between p-4 md:p-8 text-white h-full pb-0 md:pb-0"
+          style={{ minHeight: "400px" }}
+        >
+          <div className="order-2 md:order-1 w-full md:w-1/2 flex justify-center md:justify-start pt-4 md:pt-0">
+            <img
+              src="/jade.png"
+              alt="Jade Sibalde"
+              className="w-48 md:w-72 lg:w-96 max-w-none"
+            />
+          </div>
+          <div className="order-1 md:order-2 w-full md:w-1/2 flex flex-col items-center md:items-end text-center md:text-right space-y-2 md:space-y-4 p-4">
+            <img
+              src="/logo_white.png"
+              alt="Jade Sibalde Advocacia"
+              className="w-32 md:w-48 lg:w-64 mb-2 md:mb-4"
+            />
+            <p className="text-sm md:text-md lg:text-lg">
+              Excelência em Assessoria Jurídica Nacional e Internacional
+            </p>
+            <p className="text-lg md:text-xl lg:text-2xl">
+              Direito moderno para um mundo dinâmico
+            </p>
+            <Button buttonText={"Entre em Contato"} />
+          </div>
+        </div>
+      </Wrapper>
     </div>
   );
 };
