@@ -24,3 +24,8 @@ export type SocialNetworksProps = {
 export type UrlsProps = {
   whatsapp: string;
 }
+
+export type ServicesListProps = {
+  title: string;
+  list: string[];
+}

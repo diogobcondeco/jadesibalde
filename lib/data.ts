@@ -1,4 +1,4 @@
-import { AboutProps, AtuacaoProps, DiferenciaisProps, SocialNetworksProps, UrlsProps } from "./types";
+import { AboutProps, AtuacaoProps, DiferenciaisProps, ServicesListProps, SocialNetworksProps, UrlsProps } from "./types";
 
 export const atuacaoInfo: AtuacaoProps[] = [
   {
@@ -96,3 +96,38 @@ export const socialNetworksInfo: SocialNetworksProps[] = [
 export const urls: UrlsProps = {
   whatsapp: "https://api.whatsapp.com/send?phone=351911749476"
 }
+
+export const servicesList: ServicesListProps[] = [
+  {
+    title: "Sucessão e Família (Brasil e Exterior)",
+    list: ["Inventário e Arrolamento de Bens", "Testamento", "Testamento Vital", "Curatela (Interdição)", "Reconhecimento e Dissolução de União Estável", "Pacto Antenupcial, Contrato de União Estável e Contrato de Namoro", "Divórcio", "Ação de Guarda"]
+  },
+  {
+    title: "Contratos",
+    list: ["Contratos"]
+  },
+  {
+    title: "Direito Digital",
+    list: ["Responsabilidade Civil e Penal na Internet", "Proteção do Direito à Imagem", "Elaboração e Revisão de Política de Proteção de Dados"]
+  },
+  {
+    title: "Ações Constitucionais",
+    list: ["Mandado de Segurança", "Mandado de Injunção", "Ação Direta de Inconstitucionalidade", "Ação Declaratória de Constitucionalidade", "Arguição de Descumprimento de Preceito Fundamental", "Ação Popular"]
+  },
+  {
+    title: "Direito Eleitoral",
+    list: ["Consulta Eleitoral", "Ação de Impugnação de Mandato Eletivo - AIME", "Ação de Investigação Judicial Eleitoral - AIJE", "Planejamento de Campanha Eleitoral", "Assessoria em Período Eleição"]
+  },
+  {
+    title: "Compliance e Governança",
+    list: ["Implementação, Revisão e Monitorização de Programas de Compliance", "Diagnóstico e Análise de Riscos Jurídicos", "Elaboração e Implementação de Políticas Internas"]
+  },
+  {
+    title: "Propriedade Intelectual",
+    list: ["Registro de Marca", "Análise de Viabilidade e Registro de Patente", "Registro de Desenho Industrial", "Registro de Música", "Registro de Livro", "Elaboração de Pareceres em Matéria Intelectual", "Contratos de Cessão e Licenciamento de Direitos Intelectuais"]
+  },
+  {
+    title: "Cidadania Internacional",
+    list: ["Assessoria de Migração para Portugal (Solicitação de Visto)", "Solicitação de Cidadania Portuguesa e Italiana para Brasileiros", "Assessoria de Migração para o Brasil (Solicitação de Visto)", "Solicitação de Cidadania Brasileira para Estrangeiros"]
+  }
+]
