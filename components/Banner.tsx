@@ -19,16 +19,16 @@ const Banner = () => {
               className="w-48 md:w-72 lg:w-96 max-w-none"
             />
           </div>
-          <div className="order-1 md:order-2 w-full md:w-1/2 flex flex-col items-center md:items-end text-center md:text-right space-y-2 md:space-y-4 p-4">
+          <div className="order-1 md:order-2 w-full md:w-1/2 flex flex-col items-center md:items-end text-center md:text-right space-y-2 md:space-y-8 p-4">
             <img
               src="/logo_white.png"
               alt="Jade Sibalde Advocacia"
-              className="w-32 md:w-48 lg:w-64 mb-2 md:mb-4"
+              className="w-48 lg:w-64 mb-2 md:mb-0"
             />
-            <p className="text-sm md:text-md lg:text-lg">
+            <p className="text-lg md:text-xl lg:text-2xl font-thin">
               Excelência em Assessoria Jurídica Nacional e Internacional
             </p>
-            <p className="text-lg md:text-xl lg:text-2xl">
+            <p className="text-2xl md:text-3xl lg:text-4xl font-serif">
               Direito moderno para um mundo dinâmico
             </p>
             <Button buttonText={"Entre em Contato"} />
