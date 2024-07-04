@@ -44,7 +44,7 @@ const Atuacao = () => {
         <div className="flex justify-center md:justify-end mt-4">
           <button
             onClick={openModal}
-            className="bg-white text-themeColor text-xl font-bold py-4 px-6 rounded-3xl transition-transform duration-300 transform hover:scale-110"
+            className="bg-white text-themeColor text-xl font-bold py-4 px-6 rounded-3xl transition-transform duration-300 transform hover:scale-110 underline"
           >
             Ver Lista Completa
           </button>
