@@ -20,3 +20,7 @@ export type SocialNetworksProps = {
   icon: string;
   linkUrl: string;
 }
+
+export type UrlsProps = {
+  whatsapp: string;
+}

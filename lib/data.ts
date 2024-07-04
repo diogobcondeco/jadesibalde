@@ -1,4 +1,4 @@
-import { AboutProps, AtuacaoProps, DiferenciaisProps, SocialNetworksProps } from "./types";
+import { AboutProps, AtuacaoProps, DiferenciaisProps, SocialNetworksProps, UrlsProps } from "./types";
 
 export const atuacaoInfo: AtuacaoProps[] = [
   {
@@ -92,3 +92,7 @@ export const socialNetworksInfo: SocialNetworksProps[] = [
     linkUrl: "https://www.linkedin.com/in/jade-sibalde-9866b422a"
   }
 ];
+
+export const urls: UrlsProps = {
+  whatsapp: "https://api.whatsapp.com/send?phone=351911749476"
+}
