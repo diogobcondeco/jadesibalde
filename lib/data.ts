@@ -80,6 +80,10 @@ export const socialNetworksInfo: SocialNetworksProps[] = [
     linkUrl: "https://www.youtube.com/@direitoporjade"
   },
   {
+    icon: "mdi:instagram",
+    linkUrl: "https://www.instagram.com/jadesibalde.adv/"
+  },
+  {
     icon: "mdi:linkedin",
     linkUrl: "https://www.linkedin.com/in/jade-sibalde-9866b422a"
   }
