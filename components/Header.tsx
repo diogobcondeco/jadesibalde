@@ -13,13 +13,9 @@ const Header = () => {
   return (
     <header className="bg-purple-950 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-      <div className="flex items-center">
+        <div className="flex items-center">
           <a href="#" rel="noopener noreferrer">
-            <img
-              src="/logo_white.png"
-              alt="Company Logo"
-              className="h-10"
-            />
+            <img src="/logo_white.png" alt="Company Logo" className="h-10" />
           </a>
         </div>
         <nav className="hidden md:flex space-x-4">
