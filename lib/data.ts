@@ -64,7 +64,7 @@ export const diferenciaisInfo: DiferenciaisProps[] = [
 ];
 
 export const aboutInfo: AboutProps = {
-  title: "Sobre A Advogada",
+  title: "Sobre a Advogada",
   description: [
     "Eu acredito que cada caso é único, carregando consigo uma história distinta e um contexto especial. Para mim, um caso é muito mais do que um número; é uma oportunidade de fazer a diferença na vida das pessoas.",
     "Acredito firmemente que a combinação de preparo científico e a aplicação prática é essencial para oferecer uma advocacia de excelência. Minha formação me permite abordar os casos com uma perspectiva aprofundada e técnica, enquanto minha experiência prática me ensina a adaptar essas teorias à realidade de cada cliente.",
@@ -75,6 +75,10 @@ export const aboutInfo: AboutProps = {
 } 
 
 export const socialNetworksInfo: SocialNetworksProps[] = [
+  {
+    icon: "ph:globe",
+    linkUrl: "https://direitoporjade.com/"
+  },
   {
     icon: "mdi:youtube",
     linkUrl: "https://www.youtube.com/@direitoporjade"
