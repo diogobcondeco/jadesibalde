@@ -7,8 +7,10 @@ const Atuacao = () => {
       <Wrapper>
         <div className="text-3xl font-bold mb-8 text-center">Atuação</div>
         <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-1/2 p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* <div className="w-full md:w-1/2 p-4"> */}
+          <div className="w-full p-4">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"> */}
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
               {atuacaoInfo.map((item, index) => (
                 <div
                   key={index}
@@ -24,7 +26,7 @@ const Atuacao = () => {
               ))}
             </div>
           </div>
-          <div className="w-full md:w-1/2 p-4">
+          {/* <div className="w-full md:w-1/2 p-4">
             <div className="relative" style={{ paddingTop: "56.25%" }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
@@ -35,7 +37,7 @@ const Atuacao = () => {
                 allowFullScreen
               ></iframe>
             </div>
-          </div>
+          </div> */}
         </div>
       </Wrapper>
     </div>
