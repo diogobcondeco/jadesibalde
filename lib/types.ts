@@ -13,6 +13,7 @@ export type AboutProps = {
   title: string;
   description: string[];
   imageUrl: string;
+  additionalText: string;
 };
 
 export type SocialNetworksProps = {
