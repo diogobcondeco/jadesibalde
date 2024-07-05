@@ -26,10 +26,10 @@ const ServicesModal = () => {
 
   return (
     <>
-      <div className="flex justify-center md:justify-end mt-4">
+      <div className="flex justify-center mt-4">
         <button
           onClick={openModal}
-          className="bg-white text-themeColor mt-2 transition-transform duration-300 transform hover:scale-110 underline"
+          className="bg-white text-themeColor mt-2 transition-transform duration-300 transform hover:scale-105 hover:underline"
         >
           Ver Lista Completa
         </button>

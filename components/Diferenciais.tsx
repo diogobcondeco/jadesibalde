@@ -11,7 +11,7 @@ const Diferenciais = () => {
           {diferenciaisInfo.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center p-4 border rounded shadow"
+              className="flex flex-col items-center p-4"
             >
               <img
                 src={item.logo}
