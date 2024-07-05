@@ -11,7 +11,7 @@ const About = () => {
       <Wrapper>
         <Title titleText={title} />
         <div className="flex flex-wrap justify-between items-center">
-          <div className="w-full md:w-1/2 p-4">
+          <div className="w-full md:w-1/2">
             {description.map((item, index) => (
               <p key={index} className="mb-4">
                 {item}
