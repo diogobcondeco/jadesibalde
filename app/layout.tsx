@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <WhatsAppIcon />
         <Analytics />
       </body>
     </html>
