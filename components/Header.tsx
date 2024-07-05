@@ -14,7 +14,7 @@ const Header = () => {
     <header className="bg-themeColor text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <a href="#" rel="noopener noreferrer">
+          <a href="https://jadesibalde.com/" rel="noopener noreferrer">
             <img src="/logo_white.png" alt="Company Logo" className="h-10" />
           </a>
         </div>
