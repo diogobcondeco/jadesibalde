@@ -17,7 +17,7 @@ const About = () => {
                 {item}
               </p>
             ))}
-            <hr className="my-4 border-t-2 border-gray-300" /> {/* Horizontal line */}
+            <hr className="my-4 border-t-1 border-themeColor" /> {/* Horizontal line */}
             <p id="emphasis" className="mb-4 text-lg font-bold text-gray-800 text-center">
               {additionalText}
             </p>
