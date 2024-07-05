@@ -10,7 +10,7 @@ const Atuacao = () => {
       <Wrapper>
         <Title titleText={"Atuação"} />
         <div className="flex flex-wrap justify-between">
-          <div className="w-full p-4">
+          <div className="w-full">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
               {atuacaoInfo.map((item, index) => (
                 <div key={index} className="flex flex-col items-center p-4 border rounded shadow">
