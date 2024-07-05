@@ -1,5 +1,5 @@
 import { urls } from "@/lib/data";
-import Button from "./Button";
+import ContactButton from "./ContactButton";
 import Wrapper from "./Wrapper";
 
 const Banner = () => {
@@ -32,7 +32,7 @@ const Banner = () => {
             <p className="text-2xl md:text-3xl lg:text-4xl font-serif">
               Direito moderno para um mundo dinâmico
             </p>
-            <Button buttonText={"Entre em Contato"} url={urls.whatsapp} />
+            <ContactButton buttonText={"Entre em Contato"} url={urls.whatsapp} />
           </div>
         </div>
       </Wrapper>
