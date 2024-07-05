@@ -1,6 +1,7 @@
 import React from 'react';
 import Wrapper from './Wrapper';
 import { aboutInfo } from '@/lib/data';
+import Title from './Title';
 
 const About = () => {
   const { title, description, imageUrl, additionalText } = aboutInfo;
@@ -8,7 +9,7 @@ const About = () => {
   return (
     <div id="section_about" className="py-4">
       <Wrapper>
-        <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
+        <Title titleText={title} />
         <div className="flex flex-wrap justify-between items-center">
           <div className="w-full md:w-1/2 p-4">
             {description.map((item, index) => (

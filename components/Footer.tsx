@@ -6,7 +6,7 @@ const Footer = () => {
   const madeBy = "https://diogobcondeco.com/";
 
   return (
-    <footer className="bg-purple-950 text-white p-4">
+    <footer className="bg-themeColor text-white p-4">
       <div className="mb-4 text-left">
         Jade Sibalde © {currentYear}
       </div>

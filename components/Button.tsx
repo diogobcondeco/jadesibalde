@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-interface ButtonProps {
+type ButtonProps = {
   buttonText: string;
   url: string; // Add url prop for the link
 }

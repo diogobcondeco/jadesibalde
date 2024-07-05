@@ -1,11 +1,12 @@
 import { diferenciaisInfo } from "@/lib/data";
 import Wrapper from "./Wrapper";
+import Title from "./Title";
 
 const Diferenciais = () => {
   return (
     <div id="section_diferenciais" className="bg-gray-100 py-4">
       <Wrapper>
-        <h2 className="text-3xl font-bold mb-8 text-center">Diferenciais</h2>
+        <Title titleText={"Diferenciais"} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {diferenciaisInfo.map((item, index) => (
             <div

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { atuacaoInfo, servicesList } from '@/lib/data';
 import Wrapper from './Wrapper';
+import Title from './Title';
 
 const Atuacao = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +29,7 @@ const Atuacao = () => {
   return (
     <div id="section_atuacao" className="py-4">
       <Wrapper>
-        <div className="text-3xl font-bold mb-8 text-center">Atuação</div>
+        <Title titleText={"Atuação"} />
         <div className="flex flex-wrap justify-between">
           <div className="w-full p-4">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
