@@ -20,7 +20,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ buttonText, url, inverted
 
   return (
     <button
-      className={`${contactButtonClass} text-xl font-bold py-4 px-6 rounded-3xl transition-transform duration-300 transform hover:scale-110`}
+      className={`${contactButtonClass} text-xl font-bold py-4 px-6 rounded transition-transform duration-300 transform hover:scale-110`}
       style={{ marginTop: '2rem' }}
       onClick={handleClick} // Call handleClick function on button click
     >
