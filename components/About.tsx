@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from './Wrapper';
 import { aboutInfo } from '@/lib/data';
-import Title from './Title';
+import SectionTitle from './SectionTitle';
 
 const About = () => {
   const { title, description, imageUrl, additionalText } = aboutInfo;
@@ -9,7 +9,7 @@ const About = () => {
   return (
     <div id="section_about" className="py-4">
       <Wrapper>
-        <Title titleText={title} />
+        <SectionTitle titleText={title} />
         <div className="flex flex-wrap justify-between items-center">
           <div className="w-full md:w-1/2">
             {description.map((item, index) => (

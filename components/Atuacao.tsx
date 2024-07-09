@@ -1,14 +1,14 @@
 import React from 'react';
 import { atuacaoInfo } from '@/lib/data';
 import Wrapper from './Wrapper';
-import Title from './Title';
+import SectionTitle from './SectionTitle';
 import ServicesModal from './ServicesModal';
 
 const Atuacao = () => {
   return (
     <div id="section_atuacao" className="py-4">
       <Wrapper>
-        <Title titleText={"Atuação"} />
+        <SectionTitle titleText={"Atuação"} />
         <div className="flex flex-wrap justify-between">
           <div className="w-full">
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
