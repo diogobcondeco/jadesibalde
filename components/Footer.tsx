@@ -1,3 +1,5 @@
+'use client';
+
 import { Icon } from '@iconify/react';
 import { socialNetworksInfo } from '@/lib/data';
 
