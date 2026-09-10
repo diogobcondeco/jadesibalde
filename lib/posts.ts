@@ -50,6 +50,13 @@ export function getAllPostSlugs(): string[] {
     .map((f) => f.replace(/\.md$/, ""));
 }
 
+function calculateReadingTime(content: string) {
+  const words = content.trim().split(/\s+/).filter(Boolean);
+  const wordsPerMinute = 200;
+
+  return Math.max(1, Math.ceil(words.length / wordsPerMinute));
+}
+
 /** Full content (as HTML) plus metadata for one post. */
 export async function getPostBySlug(slug: string) {
   const fileContents = readPostFile(`${slug}.md`);
@@ -63,6 +70,7 @@ export async function getPostBySlug(slug: string) {
     date: (data.date as string) ?? "",
     excerpt: (data.excerpt as string) ?? "",
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
+    readingTime: calculateReadingTime(content),
     contentHtml: processed.toString(),
   };
 }

@@ -52,11 +52,20 @@ export default async function BlogPostPage({ params }: Props) {
         {post.title}
       </h1>
 
-      {post.date && (
-        <time dateTime={post.date} className="mt-2 block text-sm text-gray-500">
-          {formatDate(post.date)}
-        </time>
-      )}
+      <div className="mt-2 flex flex-wrap items-center gap-x-2 text-sm text-gray-500">
+        {post.date && (
+          <time dateTime={post.date}>
+            {formatDate(post.date)}
+          </time>
+        )}
+
+        {post.date && <span aria-hidden="true">·</span>}
+
+        <span>
+          {post.readingTime}{" "}
+          {post.readingTime === 1 ? "minuto" : "minutos"} de leitura
+        </span>
+      </div>
 
       {post.tags.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
