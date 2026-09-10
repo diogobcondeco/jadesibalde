@@ -10,6 +10,8 @@ type Props = {
   posts: PostMeta[];
 };
 
+const POSTS_PER_PAGE = 10;
+
 function formatDate(dateString: string) {
   if (!dateString) return "";
 
@@ -24,6 +26,7 @@ export default function BlogPostList({ posts }: Props) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
   const tags = useMemo(() => {
     const counts = new Map<string, number>();
@@ -74,6 +77,29 @@ export default function BlogPostList({ posts }: Props) {
     });
   }, [posts, selectedTag, searchQuery, sortOrder]);
 
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+
+  const hasMorePosts = visibleCount < filteredPosts.length;
+
+  function handleSearchChange(value: string) {
+    setSearchQuery(value);
+    setVisibleCount(POSTS_PER_PAGE);
+  }
+
+  function handleTagChange(tag: string | null) {
+    setSelectedTag(tag);
+    setVisibleCount(POSTS_PER_PAGE);
+  }
+
+  function handleSortChange(value: SortOrder) {
+    setSortOrder(value);
+    setVisibleCount(POSTS_PER_PAGE);
+  }
+
+  function handleLoadMore() {
+    setVisibleCount((current) => current + POSTS_PER_PAGE);
+  }
+
   return (
     <>
       <div className="mt-8">
@@ -85,7 +111,9 @@ export default function BlogPostList({ posts }: Props) {
           id="blog-search"
           type="search"
           value={searchQuery}
-          onChange={(event) => setSearchQuery(event.target.value)}
+          onChange={(event) =>
+            handleSearchChange(event.target.value)
+          }
           placeholder="Pesquisar artigos..."
           className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-900"
         />
@@ -96,7 +124,7 @@ export default function BlogPostList({ posts }: Props) {
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
-              onClick={() => setSelectedTag(null)}
+              onClick={() => handleTagChange(null)}
               className={`rounded-full px-4 py-2 text-sm ${
                 selectedTag === null
                   ? "bg-gray-900 text-white"
@@ -110,7 +138,7 @@ export default function BlogPostList({ posts }: Props) {
               <button
                 key={tag}
                 type="button"
-                onClick={() => setSelectedTag(tag)}
+                onClick={() => handleTagChange(tag)}
                 className={`rounded-full px-4 py-2 text-sm ${
                   selectedTag === tag
                     ? "bg-gray-900 text-white"
@@ -135,7 +163,7 @@ export default function BlogPostList({ posts }: Props) {
             id="blog-sort"
             value={sortOrder}
             onChange={(event) =>
-              setSortOrder(event.target.value as SortOrder)
+              handleSortChange(event.target.value as SortOrder)
             }
             className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-gray-900"
           >
@@ -150,43 +178,62 @@ export default function BlogPostList({ posts }: Props) {
           Não foram encontrados artigos com estes critérios.
         </p>
       ) : (
-        <ul className="mt-10 divide-y divide-gray-200">
-          {filteredPosts.map((post) => (
-            <li key={post.slug} className="py-8 first:pt-0">
-              <Link href={`/blog/${post.slug}`} className="group block">
-                <h2 className="text-xl font-medium text-gray-900 group-hover:underline">
-                  {post.title}
-                </h2>
+        <>
+          <ul className="mt-10 divide-y divide-gray-200">
+            {visiblePosts.map((post) => (
+              <li key={post.slug} className="py-8 first:pt-0">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group block"
+                >
+                  <h2 className="text-xl font-medium text-gray-900 group-hover:underline">
+                    {post.title}
+                  </h2>
 
-                {post.date && (
-                  <time
-                    dateTime={post.date}
-                    className="mt-1 block text-sm text-gray-500"
-                  >
-                    {formatDate(post.date)}
-                  </time>
-                )}
+                  {post.date && (
+                    <time
+                      dateTime={post.date}
+                      className="mt-1 block text-sm text-gray-500"
+                    >
+                      {formatDate(post.date)}
+                    </time>
+                  )}
 
-                {post.tags.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                  {post.tags.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
-                {post.excerpt && (
-                  <p className="mt-3 text-gray-600">{post.excerpt}</p>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                  {post.excerpt && (
+                    <p className="mt-3 text-gray-600">
+                      {post.excerpt}
+                    </p>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {hasMorePosts && (
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={handleLoadMore}
+                className="w-full rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:w-auto"
+              >
+                Carregar mais
+              </button>
+            </div>
+          )}
+        </>
       )}
     </>
   );
