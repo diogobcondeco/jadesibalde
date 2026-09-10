@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,20 +15,21 @@ const Header = () => {
     <header className="bg-themeColor text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <a href="https://jadesibalde.com/" rel="noopener noreferrer">
+          <Link href="https://jadesibalde.com/" rel="noopener noreferrer">
             <img src="/logo_white.png" alt="Company Logo" className="h-10" />
-          </a>
+          </Link>
         </div>
         <nav className="hidden md:flex space-x-4">
-          <a href="#section_atuacao" className="hover:underline">
+          <Link href="/#section_atuacao" className="hover:underline">
             Atuação
-          </a>
-          <a href="#section_diferenciais" className="hover:underline">
+          </Link>
+          <Link href="/#section_diferenciais" className="hover:underline">
             Diferenciais
-          </a>
-          <a href="#section_about" className="hover:underline">
+          </Link>
+          <Link href="/#section_about" className="hover:underline">
             Sobre
-          </a>
+          </Link>
+          <Link href="/blog">Blog</Link>
         </nav>
         <div className="md:hidden">
           <button onClick={toggleMenu} className="focus:outline-none">
@@ -47,15 +49,16 @@ const Header = () => {
           isOpen ? "block" : "hidden"
         } text-white flex flex-col items-center py-8 gap-4 text-lg`}
       >
-        <a href="#section_atuacao" className="hover:underline py-2">
+        <Link href="/#section_atuacao" className="hover:underline py-2">
           Atuação
-        </a>
-        <a href="#section_diferenciais" className="hover:underline py-2">
+        </Link>
+        <Link href="/#section_diferenciais" className="hover:underline py-2">
           Diferenciais
-        </a>
-        <a href="#section_about" className="hover:underline py-2">
+        </Link>
+        <Link href="/#section_about" className="hover:underline py-2">
           Sobre
-        </a>
+        </Link>
+        <Link href="/blog">Blog</Link>
       </nav>
     </header>
   );
