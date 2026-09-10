@@ -20,6 +20,7 @@ function formatDate(dateString: string) {
 
 export default function BlogPostList({ posts }: Props) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const tags = useMemo(() => {
     const counts = new Map<string, number>();
@@ -43,17 +44,41 @@ export default function BlogPostList({ posts }: Props) {
   }, [posts]);
 
   const filteredPosts = useMemo(() => {
-    if (!selectedTag) {
-      return posts;
-    }
+    const query = searchQuery.trim().toLowerCase();
 
-    return posts.filter((post) => post.tags.includes(selectedTag));
-  }, [posts, selectedTag]);
+    return posts.filter((post) => {
+      const matchesTag =
+        !selectedTag || post.tags.includes(selectedTag);
+
+      const matchesSearch =
+        !query ||
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.tags.some((tag) => tag.toLowerCase().includes(query));
+
+      return matchesTag && matchesSearch;
+    });
+  }, [posts, selectedTag, searchQuery]);
 
   return (
     <>
+      <div className="mt-8">
+        <label htmlFor="blog-search" className="sr-only">
+          Pesquisar artigos
+        </label>
+
+        <input
+          id="blog-search"
+          type="search"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          placeholder="Pesquisar artigos..."
+          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-900"
+        />
+      </div>
+
       {tags.length > 0 && (
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => setSelectedTag(null)}
@@ -85,7 +110,7 @@ export default function BlogPostList({ posts }: Props) {
 
       {filteredPosts.length === 0 ? (
         <p className="mt-8 text-gray-500">
-          Não foram encontrados artigos com esta tag.
+          Não foram encontrados artigos com estes critérios.
         </p>
       ) : (
         <ul className="mt-10 divide-y divide-gray-200">
