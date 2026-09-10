@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { PostMeta } from "@/lib/posts";
 
@@ -27,6 +27,8 @@ export default function BlogPostList({ posts }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   const tags = useMemo(() => {
     const counts = new Map<string, number>();
@@ -81,6 +83,36 @@ export default function BlogPostList({ posts }: Props) {
 
   const hasMorePosts = visibleCount < filteredPosts.length;
 
+  useEffect(() => {
+    const element = loadMoreRef.current;
+
+    if (!element || !hasMorePosts) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setVisibleCount((current) =>
+            Math.min(
+              current + POSTS_PER_PAGE,
+              filteredPosts.length,
+            ),
+          );
+        }
+      },
+      {
+        rootMargin: "300px",
+      },
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasMorePosts, filteredPosts.length]);
+
   function handleSearchChange(value: string) {
     setSearchQuery(value);
     setVisibleCount(POSTS_PER_PAGE);
@@ -97,7 +129,12 @@ export default function BlogPostList({ posts }: Props) {
   }
 
   function handleLoadMore() {
-    setVisibleCount((current) => current + POSTS_PER_PAGE);
+    setVisibleCount((current) =>
+      Math.min(
+        current + POSTS_PER_PAGE,
+        filteredPosts.length,
+      ),
+    );
   }
 
   return (
@@ -223,15 +260,23 @@ export default function BlogPostList({ posts }: Props) {
           </ul>
 
           {hasMorePosts && (
-            <div className="mt-8 flex justify-center">
-              <button
-                type="button"
-                onClick={handleLoadMore}
-                className="w-full rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:w-auto"
-              >
-                Carregar mais
-              </button>
-            </div>
+            <>
+              <div
+                ref={loadMoreRef}
+                className="h-1"
+                aria-hidden="true"
+              />
+
+              <div className="mt-8 flex justify-center">
+                <button
+                  type="button"
+                  onClick={handleLoadMore}
+                  className="w-full rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:w-auto"
+                >
+                  Carregar mais
+                </button>
+              </div>
+            </>
           )}
         </>
       )}
