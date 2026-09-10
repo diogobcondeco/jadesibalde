@@ -137,6 +137,11 @@ export default function BlogPostList({ posts }: Props) {
     );
   }
 
+  const hasActiveFilters =
+    searchQuery.trim().length > 0 || selectedTag !== null;
+
+  const resultCount = filteredPosts.length;
+
   return (
     <>
       <div className="mt-8">
@@ -210,10 +215,34 @@ export default function BlogPostList({ posts }: Props) {
         </div>
       </div>
 
-      {filteredPosts.length === 0 ? (
-        <p className="mt-8 text-gray-500">
-          Não foram encontrados artigos com estes critérios.
+      {hasActiveFilters && resultCount > 0 && (
+        <p className="mt-6 text-sm text-gray-500">
+          {resultCount === 1
+            ? "1 artigo encontrado"
+            : `${resultCount} artigos encontrados`}
         </p>
+      )}
+
+      {resultCount === 0 ? (
+        <div className="mt-10">
+          <p className="text-gray-700">
+            Não foram encontrados artigos com estes critérios.
+          </p>
+
+          {hasActiveFilters && (
+            <button
+              type="button"
+              onClick={() => {
+                setSearchQuery("");
+                setSelectedTag(null);
+                setVisibleCount(POSTS_PER_PAGE);
+              }}
+              className="mt-3 text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900"
+            >
+              Limpar pesquisa e filtros
+            </button>
+          )}
+        </div>
       ) : (
         <>
           <ul className="mt-10 divide-y divide-gray-200">
