@@ -2,18 +2,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
 
-// NOTE: if your Next.js version is 15+, `params` is a Promise and both
-// functions below need `const { slug } = await params;` instead of the
-// direct destructuring used here (Next.js changed this in v15).
-type Props = { params: { slug: string } };
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
 export function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+
   try {
-    const post = await getPostBySlug(params.slug);
+    const post = await getPostBySlug(slug);
+
     return { title: `${post.title} | Jade Sibalde`, description: post.excerpt };
   } catch {
     return {};
@@ -30,10 +32,12 @@ function formatDate(dateString: string) {
 }
 
 export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+
   let post: Awaited<ReturnType<typeof getPostBySlug>>;
 
   try {
-    post = await getPostBySlug(params.slug);
+    post = await getPostBySlug(slug);
   } catch {
     notFound();
   }
