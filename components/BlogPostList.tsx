@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { PostMeta } from "@/lib/posts";
 
+type SortOrder = "newest" | "oldest";
+
 type Props = {
   posts: PostMeta[];
 };
@@ -21,6 +23,7 @@ function formatDate(dateString: string) {
 export default function BlogPostList({ posts }: Props) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
 
   const tags = useMemo(() => {
     const counts = new Map<string, number>();
@@ -46,7 +49,7 @@ export default function BlogPostList({ posts }: Props) {
   const filteredPosts = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
 
-    return posts.filter((post) => {
+    const matchingPosts = posts.filter((post) => {
       const matchesTag =
         !selectedTag || post.tags.includes(selectedTag);
 
@@ -58,7 +61,18 @@ export default function BlogPostList({ posts }: Props) {
 
       return matchesTag && matchesSearch;
     });
-  }, [posts, selectedTag, searchQuery]);
+
+    return [...matchingPosts].sort((a, b) => {
+      if (!a.date && !b.date) return 0;
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+
+      const comparison =
+        new Date(a.date).getTime() - new Date(b.date).getTime();
+
+      return sortOrder === "newest" ? -comparison : comparison;
+    });
+  }, [posts, selectedTag, searchQuery, sortOrder]);
 
   return (
     <>
@@ -77,36 +91,59 @@ export default function BlogPostList({ posts }: Props) {
         />
       </div>
 
-      {tags.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setSelectedTag(null)}
-            className={`rounded-full px-4 py-2 text-sm ${
-              selectedTag === null
-                ? "bg-gray-900 text-white"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
-          >
-            Todos
-          </button>
-
-          {tags.map((tag) => (
+      <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        {tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
             <button
-              key={tag}
               type="button"
-              onClick={() => setSelectedTag(tag)}
+              onClick={() => setSelectedTag(null)}
               className={`rounded-full px-4 py-2 text-sm ${
-                selectedTag === tag
+                selectedTag === null
                   ? "bg-gray-900 text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
-              {tag}
+              Todos
             </button>
-          ))}
+
+            {tags.map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => setSelectedTag(tag)}
+                className={`rounded-full px-4 py-2 text-sm ${
+                  selectedTag === tag
+                    ? "bg-gray-900 text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="flex items-center gap-2 sm:shrink-0">
+          <label
+            htmlFor="blog-sort"
+            className="text-sm text-gray-500"
+          >
+            Ordenar:
+          </label>
+
+          <select
+            id="blog-sort"
+            value={sortOrder}
+            onChange={(event) =>
+              setSortOrder(event.target.value as SortOrder)
+            }
+            className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-gray-900"
+          >
+            <option value="newest">Mais recentes</option>
+            <option value="oldest">Mais antigos</option>
+          </select>
         </div>
-      )}
+      </div>
 
       {filteredPosts.length === 0 ? (
         <p className="mt-8 text-gray-500">
