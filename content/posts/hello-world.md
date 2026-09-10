@@ -2,6 +2,9 @@
 title: "Bem-vindo(a) ao blog"
 date: "2026-09-10"
 excerpt: "O primeiro artigo do nosso novo blog."
+tags:
+  - HelloWorld
+  - Testing
 ---
 
 Este é o primeiro artigo do blog. Substitua este texto pelo conteúdo do seu artigo.

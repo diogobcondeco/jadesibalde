@@ -58,6 +58,19 @@ export default async function BlogPostPage({ params }: Props) {
         </time>
       )}
 
+      {post.tags.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {post.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
       {/* Requires the @tailwindcss/typography plugin — see setup notes */}
       <div
         className="prose prose-neutral mt-8 max-w-none prose-a:text-gray-900"

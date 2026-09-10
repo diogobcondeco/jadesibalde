@@ -11,6 +11,7 @@ export type PostMeta = {
   title: string;
   date: string;
   excerpt: string;
+  tags: string[];
 };
 
 function readPostFile(fileName: string) {
@@ -33,6 +34,7 @@ export function getSortedPostsMeta(): PostMeta[] {
       title: (data.title as string) ?? slug,
       date: (data.date as string) ?? "",
       excerpt: (data.excerpt as string) ?? "",
+      tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
     };
   });
 
@@ -60,6 +62,7 @@ export async function getPostBySlug(slug: string) {
     title: (data.title as string) ?? slug,
     date: (data.date as string) ?? "",
     excerpt: (data.excerpt as string) ?? "",
+    tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
     contentHtml: processed.toString(),
   };
 }

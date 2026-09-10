@@ -2,8 +2,9 @@ import Link from "next/link";
 import { getSortedPostsMeta } from "@/lib/posts";
 import SectionTitle from "@/components/SectionTitle";
 import Wrapper from "@/components/Wrapper";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blog | Jade Sibalde",
 };
 
@@ -43,6 +44,18 @@ export default function BlogIndexPage() {
                   >
                     {formatDate(post.date)}
                   </time>
+                )}
+                {post.tags.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 )}
                 {post.excerpt && (
                   <p className="mt-3 text-gray-600">{post.excerpt}</p>
