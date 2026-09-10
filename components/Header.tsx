@@ -49,16 +49,16 @@ const Header = () => {
           isOpen ? "block" : "hidden"
         } text-white flex flex-col items-center py-8 gap-4 text-lg`}
       >
-        <Link href="/#section_atuacao" className="hover:underline py-2">
+        <Link href="/#section_atuacao" className="hover:underline py-2" onClick={toggleMenu}>
           Atuação
         </Link>
-        <Link href="/#section_diferenciais" className="hover:underline py-2">
+        <Link href="/#section_diferenciais" className="hover:underline py-2" onClick={toggleMenu}>
           Diferenciais
         </Link>
-        <Link href="/#section_about" className="hover:underline py-2">
+        <Link href="/#section_about" className="hover:underline py-2" onClick={toggleMenu}>
           Sobre
         </Link>
-        <Link href="/blog">Blog</Link>
+        <Link href="/blog" onClick={toggleMenu}>Blog</Link>
       </nav>
     </header>
   );

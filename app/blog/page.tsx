@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSortedPostsMeta } from "@/lib/posts";
 import SectionTitle from "@/components/SectionTitle";
+import Wrapper from "@/components/Wrapper";
 
 export const metadata = {
   title: "Blog | Jade Sibalde",
@@ -19,7 +20,8 @@ export default function BlogIndexPage() {
   const posts = getSortedPostsMeta();
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-16 sm:py-24">
+    <div className="py-4">
+      <Wrapper>
       <SectionTitle titleText={"Blog"} />
 
       {posts.length === 0 ? (
@@ -49,7 +51,8 @@ export default function BlogIndexPage() {
             </li>
           ))}
         </ul>
-      )}
-    </main>
+        )}
+        </Wrapper>
+    </div>
   );
 }
