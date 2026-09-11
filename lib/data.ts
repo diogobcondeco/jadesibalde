@@ -1,4 +1,11 @@
-import { AboutProps, AtuacaoProps, DiferenciaisProps, ServicesListProps, SocialNetworksProps, UrlsProps } from "./types";
+import type {
+  AboutProps,
+  AtuacaoProps,
+  DiferenciaisProps,
+  ServicesListProps,
+  SocialNetworksProps,
+  UrlsProps,
+} from "./types";
 
 export const atuacaoInfo: AtuacaoProps[] = [
   {
@@ -72,25 +79,29 @@ export const aboutInfo: AboutProps = {
   ],
   imageUrl: "/jade_about.jpg",
   additionalText: "Bacharel em Direito pela Universidade Federal da Bahia, pós-graduada em Compliance e Integridade Corporativa pela Pontifícia Universidade Católica de Minas Gerais, Pós-Graduada em Direito Intelectual pela Associação Portuguesa de Direito Intelectual. Em 2022, iniciei o mestrado em Direito Intelectual pela Universidade de Lisboa e atualmente sou doutoranda em Ciências Jurídico-Políticas pela mesma instituição."
-} 
+}
 
 export const socialNetworksInfo: SocialNetworksProps[] = [
   {
     icon: "ph:globe",
-    linkUrl: "https://direitoporjade.com/"
+    label: "Site Direito por Jade",
+    linkUrl: "https://direitoporjade.com/",
   },
   {
     icon: "mdi:youtube",
-    linkUrl: "https://www.youtube.com/@direitoporjade"
+    label: "YouTube",
+    linkUrl: "https://www.youtube.com/@direitoporjade",
   },
   {
     icon: "mdi:instagram",
-    linkUrl: "https://www.instagram.com/jadesibalde.adv/"
+    label: "Instagram",
+    linkUrl: "https://www.instagram.com/jadesibalde.adv/",
   },
   {
     icon: "mdi:linkedin",
-    linkUrl: "https://www.linkedin.com/in/jade-sibalde-9866b422a"
-  }
+    label: "LinkedIn",
+    linkUrl: "https://www.linkedin.com/in/jade-sibalde-9866b422a",
+  },
 ];
 
 export const urls: UrlsProps = {

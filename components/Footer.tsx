@@ -7,15 +7,6 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const madeBy = "https://diogobcondeco.com/";
 
-  const getSocialLabel = (icon: string) => {
-    if (icon.includes('youtube')) return 'YouTube';
-    if (icon.includes('instagram')) return 'Instagram';
-    if (icon.includes('linkedin')) return 'LinkedIn';
-    if (icon.includes('globe')) return 'Site Direito por Jade';
-
-    return 'Rede social';
-  };
-
   return (
     <footer className="bg-themeColor p-4 text-white">
       <div className="mb-4 text-left">
@@ -41,7 +32,7 @@ const Footer = () => {
             href={social.linkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={getSocialLabel(social.icon)}
+            aria-label={social.label}
             className="mr-4 cursor-pointer rounded focus:outline-none focus:ring-2 focus:ring-white"
           >
             <Icon
