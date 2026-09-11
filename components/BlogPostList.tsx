@@ -27,6 +27,7 @@ export default function BlogPostList({ posts }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+  const [showAllTags, setShowAllTags] = useState(false);
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
@@ -39,17 +40,18 @@ export default function BlogPostList({ posts }: Props) {
       }
     }
 
-    return [...counts.entries()]
-      .sort((a, b) => {
-        if (b[1] !== a[1]) {
-          return b[1] - a[1];
-        }
+    return [...counts.entries()].sort((a, b) => {
+      if (b[1] !== a[1]) {
+        return b[1] - a[1];
+      }
 
-        return a[0].localeCompare(b[0]);
-      })
-      .slice(0, 8)
-      .map(([tag]) => tag);
+      return a[0].localeCompare(b[0]);
+    });
   }, [posts]);
+
+  const visibleTags = showAllTags ? tags : tags.slice(0, 12);
+
+  const hasMoreTags = tags.length > 12;
 
   const filteredPosts = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -176,7 +178,7 @@ export default function BlogPostList({ posts }: Props) {
               Todos
             </button>
 
-            {tags.map((tag) => (
+            {visibleTags.map(([tag, count]) => (
               <button
                 key={tag}
                 type="button"
@@ -187,9 +189,30 @@ export default function BlogPostList({ posts }: Props) {
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
-                {tag}
+                {tag}{" "}
+                <span
+                  className={
+                    selectedTag === tag
+                      ? "text-gray-300"
+                      : "text-gray-400"
+                  }
+                >
+                  {count}
+                </span>
               </button>
             ))}
+
+            {hasMoreTags && (
+              <button
+                type="button"
+                onClick={() =>
+                  setShowAllTags((current) => !current)
+                }
+                className="px-2 py-2 text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900"
+              >
+                {showAllTags ? "Mostrar menos" : "Mostrar mais"}
+              </button>
+            )}
           </div>
         )}
 
