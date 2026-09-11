@@ -9,8 +9,12 @@ import WhatsAppIcon from "@/components/WhatsAppIcon";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jadesibalde.com"),
   title: "Jade Sibalde",
   description: "Advocacia & Consultoria",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className={`${inter.className} flex min-h-screen flex-col`}>
         <Header />
         <div className="flex-1">{children}</div>
