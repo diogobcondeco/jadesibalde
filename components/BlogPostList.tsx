@@ -159,17 +159,21 @@ export default function BlogPostList({ posts }: Props) {
             handleSearchChange(event.target.value)
           }
           placeholder="Pesquisar artigos..."
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-900"
+          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
         />
       </div>
 
       <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div
+            className="flex flex-wrap gap-2"
+            aria-label="Filtrar artigos por tema"
+          >
             <button
               type="button"
               onClick={() => handleTagChange(null)}
-              className={`rounded-full px-4 py-2 text-sm ${
+              aria-pressed={selectedTag === null}
+              className={`rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 ${
                 selectedTag === null
                   ? "bg-gray-900 text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -183,7 +187,8 @@ export default function BlogPostList({ posts }: Props) {
                 key={tag}
                 type="button"
                 onClick={() => handleTagChange(tag)}
-                className={`rounded-full px-4 py-2 text-sm ${
+                aria-pressed={selectedTag === tag}
+                className={`rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 ${
                   selectedTag === tag
                     ? "bg-gray-900 text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -196,6 +201,7 @@ export default function BlogPostList({ posts }: Props) {
                       ? "text-gray-300"
                       : "text-gray-400"
                   }
+                  aria-hidden="true"
                 >
                   {count}
                 </span>
@@ -208,7 +214,7 @@ export default function BlogPostList({ posts }: Props) {
                 onClick={() =>
                   setShowAllTags((current) => !current)
                 }
-                className="px-2 py-2 text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900"
+                className="rounded px-2 py-2 text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
               >
                 {showAllTags ? "Mostrar menos" : "Mostrar mais"}
               </button>
@@ -230,7 +236,7 @@ export default function BlogPostList({ posts }: Props) {
             onChange={(event) =>
               handleSortChange(event.target.value as SortOrder)
             }
-            className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-gray-900"
+            className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-gray-900 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
           >
             <option value="newest">Mais recentes</option>
             <option value="oldest">Mais antigos</option>
@@ -239,7 +245,10 @@ export default function BlogPostList({ posts }: Props) {
       </div>
 
       {hasActiveFilters && resultCount > 0 && (
-        <p className="mt-6 text-sm text-gray-500">
+        <p
+          className="mt-6 text-sm text-gray-500"
+          aria-live="polite"
+        >
           {resultCount === 1
             ? "1 artigo encontrado"
             : `${resultCount} artigos encontrados`}
@@ -247,7 +256,7 @@ export default function BlogPostList({ posts }: Props) {
       )}
 
       {resultCount === 0 ? (
-        <div className="mt-10">
+        <div className="mt-10" aria-live="polite">
           <p className="text-gray-700">
             Não foram encontrados artigos com estes critérios.
           </p>
@@ -260,7 +269,7 @@ export default function BlogPostList({ posts }: Props) {
                 setSelectedTag(null);
                 setVisibleCount(POSTS_PER_PAGE);
               }}
-              className="mt-3 text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900"
+              className="mt-3 rounded text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
             >
               Limpar pesquisa e filtros
             </button>
@@ -268,12 +277,15 @@ export default function BlogPostList({ posts }: Props) {
         </div>
       ) : (
         <>
-          <ul className="mt-10 divide-y divide-gray-200">
+          <ul
+            className="mt-10 divide-y divide-gray-200"
+            aria-label="Artigos do blog"
+          >
             {visiblePosts.map((post) => (
               <li key={post.slug} className="py-8 first:pt-0">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group block"
+                  className="group block rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-4"
                 >
                   <h2 className="text-xl font-medium text-gray-900 group-hover:underline">
                     {post.title}
@@ -323,7 +335,7 @@ export default function BlogPostList({ posts }: Props) {
                 <button
                   type="button"
                   onClick={handleLoadMore}
-                  className="w-full rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:w-auto"
+                  className="w-full rounded-lg border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 sm:w-auto"
                 >
                   Carregar mais
                 </button>
