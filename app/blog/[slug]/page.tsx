@@ -85,6 +85,45 @@ export default async function BlogPostPage({ params }: Props) {
         className="prose prose-neutral mt-8 max-w-none prose-a:text-gray-900"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
+
+      <nav
+        aria-label="Navegação entre artigos"
+        className="mt-12 grid grid-cols-2 gap-4 border-t border-gray-200 pt-8"
+      >
+        <div>
+          {post.previousPost && (
+            <Link
+              href={`/blog/${post.previousPost.slug}`}
+              className="group block"
+            >
+              <span className="text-sm text-gray-500">
+                ← Artigo anterior
+              </span>
+
+              <span className="mt-1 block font-medium text-gray-900 group-hover:underline">
+                {post.previousPost.title}
+              </span>
+            </Link>
+          )}
+        </div>
+
+        <div className="text-right">
+          {post.nextPost && (
+            <Link
+              href={`/blog/${post.nextPost.slug}`}
+              className="group block"
+            >
+              <span className="text-sm text-gray-500">
+                Próximo artigo →
+              </span>
+
+              <span className="mt-1 block font-medium text-gray-900 group-hover:underline">
+                {post.nextPost.title}
+              </span>
+            </Link>
+          )}
+        </div>
+      </nav>
     </article>
   );
 }

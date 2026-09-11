@@ -64,6 +64,17 @@ export async function getPostBySlug(slug: string) {
 
   const processed = await remark().use(remarkHtml).process(content);
 
+  const posts = getSortedPostsMeta();
+  const currentIndex = posts.findIndex((post) => post.slug === slug);
+
+  const previousPost =
+    currentIndex >= 0 && currentIndex < posts.length - 1
+      ? posts[currentIndex + 1]
+      : null;
+
+  const nextPost =
+    currentIndex > 0 ? posts[currentIndex - 1] : null;
+
   return {
     slug,
     title: (data.title as string) ?? slug,
@@ -71,6 +82,8 @@ export async function getPostBySlug(slug: string) {
     excerpt: (data.excerpt as string) ?? "",
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
     readingTime: calculateReadingTime(content),
+    previousPost,
+    nextPost,
     contentHtml: processed.toString(),
   };
 }
