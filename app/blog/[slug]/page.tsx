@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/posts";
+import {
+  getAllPostSlugs,
+  getPostBySlug,
+  getRelatedPosts,
+} from "@/lib/posts";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -16,7 +20,10 @@ export async function generateMetadata({ params }: Props) {
   try {
     const post = await getPostBySlug(slug);
 
-    return { title: `${post.title} | Jade Sibalde`, description: post.excerpt };
+    return {
+      title: `${post.title} | Jade Sibalde`,
+      description: post.excerpt,
+    };
   } catch {
     return {};
   }
@@ -24,6 +31,7 @@ export async function generateMetadata({ params }: Props) {
 
 function formatDate(dateString: string) {
   if (!dateString) return "";
+
   return new Date(dateString).toLocaleDateString("pt-PT", {
     day: "numeric",
     month: "long",
@@ -49,7 +57,10 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:py-24">
-      <Link href="/blog" className="text-sm text-gray-500 hover:underline">
+      <Link
+        href="/blog"
+        className="rounded text-sm text-gray-500 hover:underline focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+      >
         ← Voltar ao blog
       </Link>
 
@@ -92,8 +103,14 @@ export default async function BlogPostPage({ params }: Props) {
       />
 
       {relatedPosts.length > 0 && (
-        <section className="mt-12 border-t border-gray-200 pt-8">
-          <h2 className="text-xl font-semibold text-gray-900">
+        <section
+          className="mt-12 border-t border-gray-200 pt-8"
+          aria-labelledby="related-posts-title"
+        >
+          <h2
+            id="related-posts-title"
+            className="text-xl font-semibold text-gray-900"
+          >
             Artigos relacionados
           </h2>
 
@@ -102,7 +119,7 @@ export default async function BlogPostPage({ params }: Props) {
               <article key={relatedPost.slug}>
                 <Link
                   href={`/blog/${relatedPost.slug}`}
-                  className="group block"
+                  className="group block rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-4"
                 >
                   <h3 className="font-medium text-gray-900 group-hover:underline">
                     {relatedPost.title}
@@ -137,7 +154,7 @@ export default async function BlogPostPage({ params }: Props) {
           {post.previousPost && (
             <Link
               href={`/blog/${post.previousPost.slug}`}
-              className="group block"
+              className="group block rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-4"
             >
               <span className="text-sm text-gray-500">
                 ← Artigo anterior
@@ -154,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
           {post.nextPost && (
             <Link
               href={`/blog/${post.nextPost.slug}`}
-              className="group block"
+              className="group block rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-4"
             >
               <span className="text-sm text-gray-500">
                 Próximo artigo →
