@@ -25,8 +25,8 @@ const Banner = () => {
               <Image
                 src="/jade.webp"
                 alt="Jade Sibalde"
-                width={768}
-                height={768}
+                width={1684}
+                height={2308}
                 priority
                 sizes="(max-width: 768px) 192px, (max-width: 1024px) 288px, 384px"
                 className="w-48 max-w-none md:w-72 lg:w-96"
@@ -34,10 +34,13 @@ const Banner = () => {
             </div>
 
             <div className="order-1 flex w-full flex-col items-center space-y-2 p-4 text-center md:order-2 md:w-1/2 md:items-end md:space-y-8 md:text-right">
-              <img
+              <Image
                 src="/logo_white.webp"
                 alt="Jade Sibalde Advocacia"
-                className="mb-2 w-48 lg:w-64 md:mb-0"
+                width={1247}
+                height={320}
+                sizes="(max-width: 1024px) 192px, 256px"
+                className="mb-2 w-48 md:mb-0 lg:w-64"
               />
 
               <p className="text-lg font-thin md:text-xl lg:text-2xl">

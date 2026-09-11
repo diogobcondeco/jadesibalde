@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
@@ -16,10 +17,13 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" aria-label="Jade Sibalde - Página inicial">
-            <img
+            <Image
               src="/logo_white.webp"
               alt="Jade Sibalde Advocacia"
-              className="h-10"
+              width={1247}
+              height={320}
+              priority
+              className="h-10 w-auto"
             />
           </Link>
         </div>
