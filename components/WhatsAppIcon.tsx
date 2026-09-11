@@ -1,22 +1,22 @@
-"use client"
+import { Icon } from "@iconify/react";
+import { urls } from "@/lib/data";
 
-import React from 'react';
-import { Icon } from '@iconify/react';
-import { urls } from '@/lib/data';
-
-const WhatsAppIcon: React.FC = () => {
-  const handleClick = () => {
-    window.open(urls.whatsapp, '_blank');
-  };
-
+const WhatsAppIcon = () => {
   return (
-    <div
-      onClick={handleClick}
-      className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-full shadow-lg cursor-pointer hover:bg-green-600 transition"
-      style={{ zIndex: 1000 }}
+    <a
+      href={urls.whatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar pelo WhatsApp"
+      className="fixed bottom-4 right-4 z-[1000] rounded-full bg-green-500 p-4 text-white shadow-lg transition hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
     >
-      <Icon icon={"mdi:whatsapp"} width="32" height="32" />
-    </div>
+      <Icon
+        icon="mdi:whatsapp"
+        width="32"
+        height="32"
+        aria-hidden="true"
+      />
+    </a>
   );
 };
 

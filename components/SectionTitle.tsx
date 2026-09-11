@@ -1,18 +1,18 @@
-import React from 'react';
-
 type SectionTitleProps = {
   titleText: string;
 };
 
-const SectionTitle: React.FC<SectionTitleProps> = ({ titleText }) => {
+const SectionTitle = ({ titleText }: SectionTitleProps) => {
   return (
-    <div className="flex flex-col items-center md:items-start mb-8">
-      <div className="flex">
-        <h2 className="text-4xl text-themeColor font-serif relative">
-          {titleText}
-          <hr className="border-b-1 border-themeColor mt-2" />
-        </h2>
-      </div>
+    <div className="mb-8 flex flex-col items-center md:items-start">
+      <h2 className="relative font-serif text-4xl text-themeColor">
+        {titleText}
+      </h2>
+
+      <hr
+        className="mt-2 w-full border-b-1 border-themeColor"
+        aria-hidden="true"
+      />
     </div>
   );
 };

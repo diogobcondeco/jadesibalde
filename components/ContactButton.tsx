@@ -1,31 +1,28 @@
-"use client"
-
-import React from 'react';
-
 type ContactButtonProps = {
   buttonText: string;
-  url: string; // Add url prop for the link
-  inverted?: boolean; // Add inverted prop with a default value
-}
+  url: string;
+  inverted?: boolean;
+};
 
-const ContactButton: React.FC<ContactButtonProps> = ({ buttonText, url, inverted = false }) => {
-  const handleClick = () => {
-    window.open(url, '_blank'); // Open url in a new tab
-  };
-
-  // Determine the button style based on the inverted prop
+const ContactButton = ({
+  buttonText,
+  url,
+  inverted = false,
+}: ContactButtonProps) => {
   const contactButtonClass = inverted
     ? "bg-themeColor text-white"
     : "bg-white text-themeColor";
 
   return (
-    <button
-      className={`${contactButtonClass} text-xl font-bold py-4 px-6 rounded transition-transform duration-300 transform hover:scale-110`}
-      style={{ marginTop: '2rem' }}
-      onClick={handleClick} // Call handleClick function on button click
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${contactButtonClass} inline-block rounded px-6 py-4 text-xl font-bold transition-transform duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent`}
+      style={{ marginTop: "2rem" }}
     >
       {buttonText}
-    </button>
+    </a>
   );
 };
 

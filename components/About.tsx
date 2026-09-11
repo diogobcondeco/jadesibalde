@@ -1,4 +1,3 @@
-import React from 'react';
 import Wrapper from './Wrapper';
 import { aboutInfo } from '@/lib/data';
 import SectionTitle from './SectionTitle';
@@ -10,23 +9,30 @@ const About = () => {
     <div id="section_about" className="py-4">
       <Wrapper>
         <SectionTitle titleText={title} />
-        <div className="flex flex-wrap justify-between items-center">
+
+        <div className="flex flex-wrap items-center justify-between">
           <div className="w-full md:w-1/2">
             {description.map((item, index) => (
               <p key={index} className="mb-4">
                 {item}
               </p>
             ))}
-            <hr className="my-4 border-t-1 border-themeColor" /> {/* Horizontal line */}
-            <p id="emphasis" className="mb-4 text-lg font-bold text-gray-800 text-center">
+
+            <hr className="my-4 border-t-1 border-themeColor" />
+
+            <p
+              id="emphasis"
+              className="mb-4 text-center text-lg font-bold text-gray-800"
+            >
               {additionalText}
             </p>
           </div>
-          <div className="w-full md:w-1/2 p-4 md:p-0 md:pl-4 flex flex-col items-center">
+
+          <div className="flex w-full flex-col items-center p-4 md:w-1/2 md:p-0 md:pl-4">
             <img
               src={imageUrl}
-              alt="About image"
-              className="rounded shadow max-w-full h-auto"
+              alt="Jade Sibalde"
+              className="h-auto max-w-full rounded shadow"
             />
           </div>
         </div>

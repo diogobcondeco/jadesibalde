@@ -12,27 +12,45 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-themeColor text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="bg-themeColor p-4 text-white">
+      <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <Link href="https://jadesibalde.com/" rel="noopener noreferrer">
-            <img src="/logo_white.png" alt="Company Logo" className="h-10" />
+          <Link href="/" aria-label="Jade Sibalde - Página inicial">
+            <img
+              src="/logo_white.png"
+              alt="Jade Sibalde Advocacia"
+              className="h-10"
+            />
           </Link>
         </div>
-        <nav className="hidden md:flex space-x-4">
+
+        <nav className="hidden space-x-4 md:flex" aria-label="Navegação principal">
           <Link href="/#section_atuacao" className="hover:underline">
             Atuação
           </Link>
+
           <Link href="/#section_diferenciais" className="hover:underline">
             Diferenciais
           </Link>
+
           <Link href="/#section_about" className="hover:underline">
             Sobre
           </Link>
-          <Link href="/blog">Blog</Link>
+
+          <Link href="/blog" className="hover:underline">
+            Blog
+          </Link>
         </nav>
+
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="focus:outline-none">
+          <button
+            type="button"
+            onClick={toggleMenu}
+            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            className="rounded p-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-themeColor"
+          >
             <Icon
               icon={
                 isOpen
@@ -40,25 +58,46 @@ const Header = () => {
                   : "iconamoon:menu-burger-horizontal"
               }
               className="text-2xl"
+              aria-hidden="true"
             />
           </button>
         </div>
       </div>
+
       <nav
+        id="mobile-menu"
+        aria-label="Navegação móvel"
         className={`md:hidden ${
-          isOpen ? "block" : "hidden"
-        } text-white flex flex-col items-center py-8 gap-4 text-lg`}
+          isOpen ? "flex" : "hidden"
+        } flex-col items-center gap-4 py-8 text-lg text-white`}
       >
-        <Link href="/#section_atuacao" className="hover:underline py-2" onClick={toggleMenu}>
+        <Link
+          href="/#section_atuacao"
+          className="py-2 hover:underline"
+          onClick={toggleMenu}
+        >
           Atuação
         </Link>
-        <Link href="/#section_diferenciais" className="hover:underline py-2" onClick={toggleMenu}>
+
+        <Link
+          href="/#section_diferenciais"
+          className="py-2 hover:underline"
+          onClick={toggleMenu}
+        >
           Diferenciais
         </Link>
-        <Link href="/#section_about" className="hover:underline py-2" onClick={toggleMenu}>
+
+        <Link
+          href="/#section_about"
+          className="py-2 hover:underline"
+          onClick={toggleMenu}
+        >
           Sobre
         </Link>
-        <Link href="/blog" onClick={toggleMenu}>Blog</Link>
+
+        <Link href="/blog" className="py-2 hover:underline" onClick={toggleMenu}>
+          Blog
+        </Link>
       </nav>
     </header>
   );

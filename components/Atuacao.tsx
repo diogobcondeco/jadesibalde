@@ -1,4 +1,3 @@
-import React from 'react';
 import { atuacaoInfo } from '@/lib/data';
 import Wrapper from './Wrapper';
 import SectionTitle from './SectionTitle';
@@ -8,19 +7,31 @@ const Atuacao = () => {
   return (
     <div id="section_atuacao" className="py-4">
       <Wrapper>
-        <SectionTitle titleText={"Atuação"} />
+        <SectionTitle titleText="Atuação" />
+
         <div className="flex flex-wrap justify-between">
           <div className="w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
-              {atuacaoInfo.map((item, index) => (
-                <div key={index} className="flex flex-col items-center p-4">
-                  <img src={item.logo} alt={`Logo ${index + 1}`} className="h-16 w-16 mb-2" />
-                  <h3 className="text-lg font-bold text-center">{item.title}</h3>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
+              {atuacaoInfo.map((item) => (
+                <div
+                  key={item.title}
+                  className="flex flex-col items-center p-4"
+                >
+                  <img
+                    src={item.logo}
+                    alt={item.title}
+                    className="mb-2 h-16 w-16"
+                  />
+
+                  <h3 className="text-center text-lg font-bold">
+                    {item.title}
+                  </h3>
                 </div>
               ))}
             </div>
           </div>
         </div>
+
         <ServicesModal />
       </Wrapper>
     </div>

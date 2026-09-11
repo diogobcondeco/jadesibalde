@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { servicesList } from "@/lib/data";
 
 const ServicesModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -14,35 +16,62 @@ const ServicesModal = () => {
     setIsModalOpen(false);
   };
 
-  const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Prevent closing modal when clicking inside the modal content
-    e.stopPropagation();
-  };
+  useEffect(() => {
+    if (!isModalOpen) {
+      openButtonRef.current?.focus();
+      return;
+    }
 
-  const handleBackdropClick = () => {
-    // Close modal when clicking outside the modal content (on the backdrop)
-    closeModal();
-  };
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isModalOpen]);
 
   return (
     <>
-      <div className="flex justify-center mt-4">
+      <div className="mt-4 flex justify-center">
         <button
+          ref={openButtonRef}
+          type="button"
           onClick={openModal}
-          className="bg-white text-themeColor mt-2 transition-transform duration-300 transform hover:scale-105 hover:underline"
+          className="mt-2 rounded px-2 py-1 text-themeColor transition-transform duration-300 hover:scale-105 hover:underline focus:outline-none focus:ring-2 focus:ring-themeColor focus:ring-offset-2"
         >
           Ver Lista Completa
         </button>
       </div>
+
       {isModalOpen && (
         <div
-          className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
-          onClick={handleBackdropClick} // Close modal on backdrop click
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              closeModal();
+            }
+          }}
         >
-          <div className="bg-white rounded-lg p-8 max-w-full md:max-w-4xl w-full max-h-[calc(100vh-10rem)] overflow-y-auto relative mx-4 md:mx-8 lg:mx-0">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="services-modal-title"
+            className="relative max-h-[calc(100vh-2rem)] w-full max-w-full overflow-y-auto rounded-lg bg-white p-8 md:max-w-4xl md:max-h-[calc(100vh-10rem)] md:mx-8 lg:mx-0"
+          >
             <button
+              ref={closeButtonRef}
+              type="button"
               onClick={closeModal}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none z-50"
+              aria-label="Fechar lista de serviços"
+              className="absolute right-4 top-4 z-50 rounded p-1 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-themeColor focus:ring-offset-2"
             >
               <svg
                 className="h-6 w-6"
@@ -50,6 +79,7 @@ const ServicesModal = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -59,22 +89,34 @@ const ServicesModal = () => {
                 />
               </svg>
             </button>
-            <h2 className="text-2xl font-bold mb-4">Todos os Serviços</h2>
+
+            <h2
+              id="services-modal-title"
+              className="mb-4 text-2xl font-bold"
+            >
+              Todos os Serviços
+            </h2>
+
             <div className="grid grid-cols-1 gap-6">
-              {servicesList.map((serviceCategory, index) => (
-                <div key={index} className="mb-4">
-                  <h3 className="text-lg font-bold">{serviceCategory.title}</h3>
-                  <ul className="list-disc list-inside">
-                    {serviceCategory.list.map((service, idx) => (
-                      <li key={idx}>{service}</li>
+              {servicesList.map((serviceCategory) => (
+                <div key={serviceCategory.title} className="mb-4">
+                  <h3 className="text-lg font-bold">
+                    {serviceCategory.title}
+                  </h3>
+
+                  <ul className="list-inside list-disc">
+                    {serviceCategory.list.map((service) => (
+                      <li key={service}>{service}</li>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
+
             <button
+              type="button"
               onClick={closeModal}
-              className="mt-4 bg-themeColor text-white font-bold py-2 px-4 rounded hover:bg-opacity-80 w-full md:w-fit"
+              className="mt-4 w-full rounded bg-themeColor px-4 py-2 font-bold text-white hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-themeColor focus:ring-offset-2 md:w-fit"
             >
               Fechar
             </button>
