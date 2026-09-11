@@ -6,6 +6,9 @@ import BlogPostList from "@/components/BlogPostList";
 
 export const metadata: Metadata = {
   title: "Blog | Jade Sibalde",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default function BlogIndexPage() {

@@ -23,6 +23,9 @@ export async function generateMetadata({ params }: Props) {
     return {
       title: `${post.title} | Jade Sibalde`,
       description: post.excerpt,
+      alternates: {
+        canonical: `/blog/${post.slug}`,
+      },
     };
   } catch {
     return {};
