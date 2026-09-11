@@ -7,8 +7,10 @@ const ServicesModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const openButtonRef = useRef<HTMLButtonElement>(null);
+  const hasOpenedModal = useRef(false);
 
   const openModal = () => {
+    hasOpenedModal.current = true;
     setIsModalOpen(true);
   };
 
@@ -17,24 +19,25 @@ const ServicesModal = () => {
   };
 
   useEffect(() => {
-    if (!isModalOpen) {
-      openButtonRef.current?.focus();
-      return;
+    if (isModalOpen) {
+      closeButtonRef.current?.focus();
+
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      };
+
+      document.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
     }
 
-    closeButtonRef.current?.focus();
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeModal();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+    if (hasOpenedModal.current) {
+      openButtonRef.current?.focus();
+    }
   }, [isModalOpen]);
 
   return (
@@ -64,7 +67,7 @@ const ServicesModal = () => {
             role="dialog"
             aria-modal="true"
             aria-labelledby="services-modal-title"
-            className="relative max-h-[calc(100vh-2rem)] w-full max-w-full overflow-y-auto rounded-lg bg-white p-8 md:max-w-4xl md:max-h-[calc(100vh-10rem)] md:mx-8 lg:mx-0"
+            className="relative max-h-[calc(100vh-2rem)] w-full max-w-full overflow-y-auto rounded-lg bg-white p-8 md:mx-8 md:max-h-[calc(100vh-10rem)] md:max-w-4xl lg:mx-0"
           >
             <button
               ref={closeButtonRef}

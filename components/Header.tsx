@@ -17,7 +17,7 @@ const Header = () => {
         <div className="flex items-center">
           <Link href="/" aria-label="Jade Sibalde - Página inicial">
             <img
-              src="/logo_white.png"
+              src="/logo_white.webp"
               alt="Jade Sibalde Advocacia"
               className="h-10"
             />

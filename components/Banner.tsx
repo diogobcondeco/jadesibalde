@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div
       className="relative w-full bg-cover bg-center"
-      style={{ backgroundImage: "url(/banner.png)" }}
+      style={{ backgroundImage: "url(/banner.webp)" }}
     >
       <Wrapper className="pb-0">
         <div
@@ -15,7 +15,7 @@ const Banner = () => {
         >
           <div className="order-2 flex w-full justify-center pt-4 md:order-1 md:w-1/2 md:justify-start md:pt-0">
             <img
-              src="/jade.png"
+              src="/jade.webp"
               alt="Jade Sibalde"
               className="w-48 max-w-none md:w-72 lg:w-96"
             />
@@ -23,7 +23,7 @@ const Banner = () => {
 
           <div className="order-1 flex w-full flex-col items-center space-y-2 p-4 text-center md:order-2 md:w-1/2 md:items-end md:space-y-8 md:text-right">
             <img
-              src="/logo_white.png"
+              src="/logo_white.webp"
               alt="Jade Sibalde Advocacia"
               className="mb-2 w-48 lg:w-64 md:mb-0"
             />
