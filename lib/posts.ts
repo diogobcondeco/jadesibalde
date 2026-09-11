@@ -38,7 +38,13 @@ export function getSortedPostsMeta(): PostMeta[] {
     };
   });
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => {
+    if (!a.date && !b.date) return 0;
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 }
 
 /** Every post's slug — used so Next.js knows which /blog/[slug] pages to build. */
