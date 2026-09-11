@@ -1,7 +1,6 @@
 ---
 title: "Este é um título bastante longo para testar como o blog lida com títulos que ocupam várias linhas"
 date: "2026-08-18"
-excerpt: "Este artigo serve para verificar se títulos e excertos maiores continuam a ter uma boa apresentação."
 ---
 
 Este artigo tem um título deliberadamente grande.

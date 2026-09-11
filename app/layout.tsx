@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://jadesibalde.com"),
   title: "Jade Sibalde",
-  description: "Advocacia & Consultoria",
+  description:
+    "Jade Sibalde — advocacia e consultoria jurídica nacional e internacional, com atuação no Brasil e em Portugal.",
   alternates: {
     canonical: "/",
   },

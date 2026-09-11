@@ -1,7 +1,6 @@
 ---
 title: "Lorem Ipsum"
 date: "2026-09-11"
-excerpt: "Vamos lá ver como funciona o Lorem Ipsum"
 tags:
   - Testing
   - Lorem Ipsum

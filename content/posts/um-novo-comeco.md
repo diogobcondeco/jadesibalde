@@ -1,7 +1,6 @@
 ---
 title: "Um novo começo"
 date: "2026-09-08"
-excerpt: "Uma pequena reflexão sobre começar algo novo."
 ---
 
 Começar um projeto novo pode ser assustador, mas também pode ser bastante divertido.

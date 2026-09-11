@@ -1,7 +1,6 @@
 ---
 title: "Um artigo para testar Markdown"
 date: "2026-08-25"
-excerpt: "Um artigo criado especificamente para testar diferentes elementos de Markdown."
 ---
 
 Este artigo existe principalmente para testar a apresentação de diferentes elementos no blog.

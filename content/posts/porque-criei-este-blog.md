@@ -1,7 +1,6 @@
 ---
 title: "Porque decidi criar este blog"
 date: "2026-09-01"
-excerpt: "Algumas razões para criar um espaço próprio para escrever e partilhar ideias."
 ---
 
 Durante bastante tempo tive ideias que acabavam por ficar apenas na minha cabeça.

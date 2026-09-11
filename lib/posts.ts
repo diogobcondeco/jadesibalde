@@ -19,37 +19,69 @@ function readPostFile(fileName: string) {
   return fs.readFileSync(fullPath, "utf8");
 }
 
+function getRequiredString(
+  data: Record<string, unknown>,
+  field: "title" | "date",
+  fileName: string,
+): string {
+  const value = data[field];
+
+  if (typeof value !== "string" || !value.trim()) {
+    throw new Error(
+      `Missing required "${field}" in frontmatter of "${fileName}".`,
+    );
+  }
+
+  return value.trim();
+}
+
+function createExcerpt(content: string, length = 100) {
+  const text = content
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_~`]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (text.length <= length) {
+    return text;
+  }
+
+  return `${text.slice(0, length).replace(/\s+\S*$/, "").trim()}...`;
+}
+
 /** Metadata for every post, newest first — used on the blog index page. */
 export function getSortedPostsMeta(): PostMeta[] {
   if (!fs.existsSync(postsDirectory)) return [];
 
-  const fileNames = fs.readdirSync(postsDirectory).filter((f) => f.endsWith(".md"));
+  const fileNames = fs
+    .readdirSync(postsDirectory)
+    .filter((f) => f.endsWith(".md"));
 
   const posts = fileNames.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
-    const { data } = matter(readPostFile(fileName));
+    const { data, content } = matter(readPostFile(fileName));
 
     return {
       slug,
-      title: (data.title as string) ?? slug,
-      date: (data.date as string) ?? "",
-      excerpt: (data.excerpt as string) ?? "",
+      title: getRequiredString(data, "title", fileName),
+      date: getRequiredString(data, "date", fileName),
+      excerpt: createExcerpt(content),
       tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
     };
   });
 
-  return posts.sort((a, b) => {
-    if (!a.date && !b.date) return 0;
-    if (!a.date) return 1;
-    if (!b.date) return -1;
-
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
+  return posts.sort(
+    (a, b) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 }
 
 /** Every post's slug — used so Next.js knows which /blog/[slug] pages to build. */
 export function getAllPostSlugs(): string[] {
   if (!fs.existsSync(postsDirectory)) return [];
+
   return fs
     .readdirSync(postsDirectory)
     .filter((f) => f.endsWith(".md"))
@@ -83,9 +115,9 @@ export async function getPostBySlug(slug: string) {
 
   return {
     slug,
-    title: (data.title as string) ?? slug,
-    date: (data.date as string) ?? "",
-    excerpt: (data.excerpt as string) ?? "",
+    title: getRequiredString(data, "title", `${slug}.md`),
+    date: getRequiredString(data, "date", `${slug}.md`),
+    excerpt: createExcerpt(content),
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
     readingTime: calculateReadingTime(content),
     previousPost,
@@ -120,10 +152,6 @@ export function getRelatedPosts(
       if (b.sharedTagCount !== a.sharedTagCount) {
         return b.sharedTagCount - a.sharedTagCount;
       }
-
-      if (!a.post.date && !b.post.date) return 0;
-      if (!a.post.date) return 1;
-      if (!b.post.date) return -1;
 
       return (
         new Date(b.post.date).getTime() -

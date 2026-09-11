@@ -1,7 +1,6 @@
 ---
 title: "As coisas que quero aprender este ano"
 date: "2026-09-05"
-excerpt: "Uma lista de tecnologias e competências que quero explorar."
 ---
 
 Há sempre alguma coisa nova para aprender na área da tecnologia.

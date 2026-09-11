@@ -1,7 +1,6 @@
 ---
 title: "Bem-vindo(a) ao blog"
 date: "2026-09-10"
-excerpt: "O primeiro artigo do nosso novo blog."
 tags:
   - HelloWorld
   - Testing

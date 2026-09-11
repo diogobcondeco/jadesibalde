@@ -6,6 +6,8 @@ import BlogPostList from "@/components/BlogPostList";
 
 export const metadata: Metadata = {
   title: "Blog | Jade Sibalde",
+  description:
+      "Artigos e informações sobre Direito, advocacia e temas jurídicos nacionais e internacionais.",
   alternates: {
     canonical: "/blog",
   },
