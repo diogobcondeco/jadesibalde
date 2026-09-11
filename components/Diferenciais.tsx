@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { diferenciaisInfo } from "@/lib/data";
 import Wrapper from "./Wrapper";
 import SectionTitle from "./SectionTitle";
@@ -14,9 +15,11 @@ const Diferenciais = () => {
               key={item.title}
               className="flex flex-col items-center p-4"
             >
-              <img
+              <Image
                 src={item.logo}
                 alt={item.title}
+                width={64}
+                height={64}
                 className="mb-4 h-16 w-16"
               />
 
