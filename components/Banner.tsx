@@ -22,9 +22,13 @@ const Banner = () => {
             style={{ minHeight: "400px" }}
           >
             <div className="order-2 flex w-full justify-center pt-4 md:order-1 md:w-1/2 md:justify-start md:pt-0">
-              <img
+              <Image
                 src="/jade.webp"
                 alt="Jade Sibalde"
+                width={768}
+                height={768}
+                priority
+                sizes="(max-width: 768px) 192px, (max-width: 1024px) 288px, 384px"
                 className="w-48 max-w-none md:w-72 lg:w-96"
               />
             </div>
