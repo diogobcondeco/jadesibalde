@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Wrapper from './Wrapper';
 import { aboutInfo } from '@/lib/data';
 import SectionTitle from './SectionTitle';
@@ -29,9 +30,12 @@ const About = () => {
           </div>
 
           <div className="flex w-full flex-col items-center p-4 md:w-1/2 md:p-0 md:pl-4">
-            <img
+            <Image
               src={imageUrl}
               alt="Jade Sibalde"
+              width={4016}
+              height={6016}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="h-auto max-w-full rounded shadow"
             />
           </div>
