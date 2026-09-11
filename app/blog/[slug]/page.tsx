@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
+import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/posts";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -41,6 +41,11 @@ export default async function BlogPostPage({ params }: Props) {
   } catch {
     notFound();
   }
+
+  const relatedPosts = getRelatedPosts(
+    post.slug,
+    post.tags,
+  );
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:py-24">
@@ -85,6 +90,44 @@ export default async function BlogPostPage({ params }: Props) {
         className="prose prose-neutral mt-8 max-w-none prose-a:text-gray-900"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12 border-t border-gray-200 pt-8">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Artigos relacionados
+          </h2>
+
+          <div className="mt-6 space-y-6">
+            {relatedPosts.map((relatedPost) => (
+              <article key={relatedPost.slug}>
+                <Link
+                  href={`/blog/${relatedPost.slug}`}
+                  className="group block"
+                >
+                  <h3 className="font-medium text-gray-900 group-hover:underline">
+                    {relatedPost.title}
+                  </h3>
+
+                  {relatedPost.date && (
+                    <time
+                      dateTime={relatedPost.date}
+                      className="mt-1 block text-sm text-gray-500"
+                    >
+                      {formatDate(relatedPost.date)}
+                    </time>
+                  )}
+
+                  {relatedPost.excerpt && (
+                    <p className="mt-2 text-sm text-gray-600">
+                      {relatedPost.excerpt}
+                    </p>
+                  )}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <nav
         aria-label="Navegação entre artigos"

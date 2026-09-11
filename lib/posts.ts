@@ -87,3 +87,43 @@ export async function getPostBySlug(slug: string) {
     contentHtml: processed.toString(),
   };
 }
+
+export function getRelatedPosts(
+  currentSlug: string,
+  currentTags: string[],
+  limit = 3,
+): PostMeta[] {
+  if (!currentTags.length) return [];
+
+  const currentTagSet = new Set(currentTags);
+
+  return getSortedPostsMeta()
+    .filter((post) => post.slug !== currentSlug)
+    .map((post) => {
+      const sharedTags = post.tags.filter((tag) =>
+        currentTagSet.has(tag),
+      );
+
+      return {
+        post,
+        sharedTagCount: sharedTags.length,
+      };
+    })
+    .filter(({ sharedTagCount }) => sharedTagCount > 0)
+    .sort((a, b) => {
+      if (b.sharedTagCount !== a.sharedTagCount) {
+        return b.sharedTagCount - a.sharedTagCount;
+      }
+
+      if (!a.post.date && !b.post.date) return 0;
+      if (!a.post.date) return 1;
+      if (!b.post.date) return -1;
+
+      return (
+        new Date(b.post.date).getTime() -
+        new Date(a.post.date).getTime()
+      );
+    })
+    .slice(0, limit)
+    .map(({ post }) => post);
+}
